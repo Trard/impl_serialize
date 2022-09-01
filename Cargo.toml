@@ -1,10 +1,18 @@
 [package]
 name = "impl_serde_serialize_error"
+description = "Macro for fast implementing error methods in serde::Serializer trait"
+categories = ["accessibility"]
+keywords = ["serde", "macro", "serialize", "error"]
+
 version = "1.0.0"
 edition = "2021"
-description = "Macro for fast implementing error methods in serde::Serializer trait"
-license = "MIT OR Apache-2.0"
 
+repository = "https://github.com/Kinetus/impl_serde_serialize_error"
+documentation = "https://docs.rs/impl_serde_serialize_error"
+readme = "README.md"
+
+author = "Trard"
+license = "MIT OR Apache-2.0"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
