@@ -1,6 +1,6 @@
 # impl_serde_serialize_error!
 
-This library provides a simple procedural macro for fast implementing error methods in [serde::Serializer trait](https://docs.rs/serde/latest/serde/trait.Serializer.html).
+This library provides a simple procedural macro for fast implementing error methods in [`serde::Serializer`] trait.
 
 # Example
 ```rust
@@ -57,3 +57,5 @@ impl ser::Serializer for MySerializer {
     );
 }
 ```
+
+[`serde::Serializer`]: https://docs.rs/serde/latest/serde/trait.Serializer.html
