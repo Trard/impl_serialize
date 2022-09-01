@@ -2,6 +2,11 @@
 
 This library provides a simple procedural macro for fast implementing error methods in [`serde::Serializer`] trait.
 
+```toml
+[dependencies]
+impl_serde_serialize_error = "1.0"
+```
+
 # Example
 ```rust
 use impl_serde_serialize_error::impl_serde_serialize_error;
