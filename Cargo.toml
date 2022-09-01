@@ -11,7 +11,7 @@ repository = "https://github.com/Kinetus/impl_serde_serialize_error"
 documentation = "https://docs.rs/impl_serde_serialize_error"
 readme = "README.md"
 
-author = "Trard"
+authors = ["Trard"]
 license = "MIT OR Apache-2.0"
 
 [dependencies]
