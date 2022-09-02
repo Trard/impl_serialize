@@ -1,14 +1,14 @@
 [package]
-name = "impl_serde_serialize_error"
-description = "Macro for fast implementing error methods in serde::Serializer trait"
+name = "impl_serialize"
+description = "Macro for common implementing methods in serde::Serializer trait"
 categories = ["accessibility"]
 keywords = ["serde", "macro", "serialize", "error"]
 
-version = "1.0.1"
+version = "1.0.0"
 edition = "2021"
 
-repository = "https://github.com/Kinetus/impl_serde_serialize_error"
-documentation = "https://docs.rs/impl_serde_serialize_error"
+repository = "https://github.com/Kinetus/impl_serialize"
+documentation = "https://docs.rs/impl_serialize"
 readme = "README.md"
 
 authors = ["Trard"]
