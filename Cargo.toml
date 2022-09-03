@@ -4,10 +4,10 @@ description = "Macro for fast implementing error methods in serde::Serializer tr
 categories = ["accessibility"]
 keywords = ["serde", "macro", "serialize", "error"]
 
-version = "1.0.3"
+version = "1.0.4"
 edition = "2021"
 
-repository = "https://github.com/Kinetus/impl_serde_serialize_error"
+repository = "https://github.com/Kinetus/impl_serialize/tree/deprecated_warning"
 documentation = "https://docs.rs/impl_serde_serialize_error"
 readme = "README.md"
 
