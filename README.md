@@ -4,7 +4,7 @@ This library provides a simple procedural macro for fast implementing serialize 
 
 ```toml
 [dependencies]
-impl_serialize = "1.0"
+impl_serialize = "2.0"
 ```
 
 # Example
