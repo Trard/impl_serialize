@@ -4,10 +4,10 @@ description = "Macro for common implementing methods in serde::Serializer trait"
 categories = ["accessibility"]
 keywords = ["serde", "macro", "serialize", "error"]
 
-version = "2.0.0"
+version = "2.0.1"
 edition = "2021"
 
-repository = "https://github.com/Kinetus/impl_serialize"
+repository = "https://github.com/Trard/impl_serialize"
 documentation = "https://docs.rs/impl_serialize"
 readme = "README.md"
 
