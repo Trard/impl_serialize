@@ -3,8 +3,8 @@
 version = 3
 
 [[package]]
-name = "impl_serde_serialize_error"
-version = "1.0.1"
+name = "impl_serialize"
+version = "2.0.0"
 dependencies = [
  "serde",
  "thiserror",

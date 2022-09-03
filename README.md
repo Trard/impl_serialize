@@ -1,22 +1,24 @@
-# impl_serde_serialize_error!
+# impl_serialize!
 
-This library provides a simple procedural macro for fast implementing error methods in [`serde::Serializer`] trait.
+This library provides a simple procedural macro for fast implementing serialize methods in [`serde::Serializer`] trait.
 
 ```toml
 [dependencies]
-impl_serde_serialize_error = "1.0"
+impl_serialize = "1.0"
 ```
 
 # Example
 ```rust
-use impl_serde_serialize_error::impl_serde_serialize_error;
+use impl_serialize::impl_serialize;
 use serde::ser;
 use thiserror::Error;
 
 #[derive(Debug, Error)]
 enum SerializationError {
-    #[error("Cannot serialize value")]
-    CannotSerialize,
+    #[error("Other error")]
+    OtherError,
+    #[error("Cannot serialize value from {0}")]
+    CannotSerializeFrom(String),
     #[error("Custom({0})")]
     Custom(String)
 }
@@ -32,8 +34,8 @@ impl serde::ser::Error for SerializationError {
 struct MySerializer;
 
 impl ser::Serializer for MySerializer {
-    type Error = SerializationError;
     type Ok = ();
+    type Error = SerializationError;
 
     type SerializeMap = ser::Impossible<Self::Ok, Self::Error>;
     type SerializeSeq = ser::Impossible<Self::Ok, Self::Error>;
@@ -42,15 +44,31 @@ impl ser::Serializer for MySerializer {
     type SerializeTuple = ser::Impossible<Self::Ok, Self::Error>;
     type SerializeTupleStruct = ser::Impossible<Self::Ok, Self::Error>;
     type SerializeTupleVariant = ser::Impossible<Self::Ok, Self::Error>;
-            
-    impl_serde_serialize_error!(
-        SerializationError::CannotSerialize, [
-            bool,
+
+    //with value type
+    impl_serialize!(
+        |value_type: &str| {
+            Err(SerializationError::CannotSerializeFrom(value_type.to_string()))
+        },
+        bool
+    );
+    
+    //without value type
+    impl_serialize!(
+        |_| Err(SerializationError::OtherError),
+        char
+    );
+
+    //for many types
+    impl_serialize!(
+        |value_type: &str| {
+            Err(SerializationError::CannotSerializeFrom(value_type.to_string()))
+        },
+        [
             bytes,
             i8, i16, i32, i64,
             u8, u16, u32, u64,
             f32, f64,
-            char,
             str,
             none, some, unit,
             unit_struct, unit_variant,
