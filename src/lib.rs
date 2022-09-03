@@ -1,3 +1,4 @@
+//! Crate deprecated. Use newer and more universal [impl_serialize!](https://crates.io/crates/impl_serialize) instead.
 //! This library provides a simple procedural macro for fast implementing error methods in
 //! [serde::Serializer](https://docs.rs/serde/latest/serde/trait.Serializer.html) trait.
 

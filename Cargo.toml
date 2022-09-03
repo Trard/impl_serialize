@@ -4,7 +4,7 @@ description = "Macro for fast implementing error methods in serde::Serializer tr
 categories = ["accessibility"]
 keywords = ["serde", "macro", "serialize", "error"]
 
-version = "1.0.2"
+version = "1.0.3"
 edition = "2021"
 
 repository = "https://github.com/Kinetus/impl_serde_serialize_error"
