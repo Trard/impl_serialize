@@ -4,7 +4,7 @@ This library provides a simple procedural macro for fast implementing serialize 
 
 ```toml
 [dependencies]
-impl_serialize = "2.0"
+impl_serialize = "3.0"
 ```
 
 # Example
@@ -47,23 +47,19 @@ impl ser::Serializer for MySerializer {
 
     //with value type
     impl_serialize!(
-        |value_type: &str| {
-            Err(SerializationError::CannotSerializeFrom(value_type.to_string()))
-        },
+        Err(SerializationError::CannotSerializeFrom(value_type.to_string())),
         bool
     );
     
     //without value type
     impl_serialize!(
-        |_| Err(SerializationError::OtherError),
+        Err(SerializationError::OtherError),
         char
     );
 
     //for many types
     impl_serialize!(
-        |value_type: &str| {
-            Err(SerializationError::CannotSerializeFrom(value_type.to_string()))
-        },
+        Err(SerializationError::CannotSerializeFrom(value_type.to_string())),
         [
             bytes,
             i8, i16, i32, i64,
