@@ -87,170 +87,282 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, bool) => {
-        fn serialize_bool(self, _v: bool) -> Result<Self::Ok, Self::Error> {
-            $get_result("bool")
+        unhygienic! {
+            fn serialize_bool(self, _v: bool) -> Result<Self::Ok, Self::Error> {
+                let value_type = "bool";
+
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, i8) => {
-        fn serialize_i8(self, _v: i8) -> Result<Self::Ok, Self::Error> {
-            $get_result("i8")
+        unhygienic! {
+            fn serialize_i8(self, _v: i8) -> Result<Self::Ok, Self::Error> {
+                let value_type = "i8";
+                
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, i16) => {
-        fn serialize_i16(self, _v: i16) -> Result<Self::Ok, Self::Error> {
-            $get_result("i16")
+        unhygienic! {
+            fn serialize_i16(self, _v: i16) -> Result<Self::Ok, Self::Error> {
+                let value_type = "i16";
+
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, i32) => {
-        fn serialize_i32(self, _v: i32) -> Result<Self::Ok, Self::Error> {
-            $get_result("i32")
+        unhygienic! {
+            fn serialize_i32(self, _v: i32) -> Result<Self::Ok, Self::Error> {
+                let value_type = "i32";
+
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, i64) => {
-        fn serialize_i64(self, _v: i64) -> Result<Self::Ok, Self::Error> {
-            $get_result("i64")
+        unhygienic! {
+            fn serialize_i64(self, _v: i64) -> Result<Self::Ok, Self::Error> {
+                let value_type = "i64";
+                
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, u8) => {
-        fn serialize_u8(self, _v: u8) -> Result<Self::Ok, Self::Error> {
-            $get_result("u8")
+        unhygienic! {
+            fn serialize_u8(self, _v: u8) -> Result<Self::Ok, Self::Error> {
+                let value_type = "u8";
+
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, u16) => {
-        fn serialize_u16(self, _v: u16) -> Result<Self::Ok, Self::Error> {
-            $get_result("u16")
+        unhygienic! {
+            fn serialize_u16(self, _v: u16) -> Result<Self::Ok, Self::Error> {
+                let value_type = "u16";
+
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, u32) => {
-        fn serialize_u32(self, _v: u32) -> Result<Self::Ok, Self::Error> {
-            $get_result("u32")
+        unhygienic! {
+            fn serialize_u32(self, _v: u32) -> Result<Self::Ok, Self::Error> {
+                let value_type = "u32";
+
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, u64) => {
-        fn serialize_u64(self, _v: u64) -> Result<Self::Ok, Self::Error> {
-            $get_result("u64")
+        unhygienic! {
+            fn serialize_u64(self, _v: u64) -> Result<Self::Ok, Self::Error> {
+                let value_type = "u32";
+
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, f32) => {
-        fn serialize_f32(self, _v: f32) -> Result<Self::Ok, Self::Error> {
-            $get_result("f32")
+        unhygienic! {
+            fn serialize_f32(self, _v: f32) -> Result<Self::Ok, Self::Error> {
+                let value_type = "f32";
+
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, f64) => {
-        fn serialize_f64(self, _v: f64) -> Result<Self::Ok, Self::Error> {
-            $get_result("64")
+        unhygienic! {
+            fn serialize_f64(self, _v: f64) -> Result<Self::Ok, Self::Error> {
+                let value_type = "f64";
+
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, char) => {
-        fn serialize_char(self, _v: char) -> Result<Self::Ok, Self::Error> {
-            $get_result("char")
+        unhygienic! {
+            fn serialize_char(self, _v: char) -> Result<Self::Ok, Self::Error> {
+                let value_type = "char";
+
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, str) => {
-        fn serialize_str(self, _v: &str) -> Result<Self::Ok, Self::Error> {
-            $get_result("str")
+        unhygienic! {
+            fn serialize_str(self, _v: &str) -> Result<Self::Ok, Self::Error> {
+                let value_type = "str";
+
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, bytes) => {
-        fn serialize_bytes(self, _v: &[u8]) -> Result<Self::Ok, Self::Error> {
-            $get_result("bytes")
+        unhygienic! {
+            fn serialize_bytes(self, _v: &[u8]) -> Result<Self::Ok, Self::Error> {
+                let value_type = "bytes";
+                
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, none) => {
-        fn serialize_none(self) -> Result<Self::Ok, Self::Error> {
-            $get_result("none")
+        unhygienic! {
+            fn serialize_none(self) -> Result<Self::Ok, Self::Error> {
+                let value_type = "none";
+
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, unit) => {
-        fn serialize_unit(self) -> Result<Self::Ok, Self::Error> {
-            $get_result("unit")
+        unhygienic! {
+            fn serialize_unit(self) -> Result<Self::Ok, Self::Error> {
+                let value_type = "unit";
+
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, some) => {
-        fn serialize_some<T: ?Sized + serde::ser::Serialize>(self, _value: &T) -> Result<Self::Ok, Self::Error> {
-            $get_result("some")
+        unhygienic! {
+            fn serialize_some<T: ?Sized + serde::ser::Serialize>(self, _value: &T) -> Result<Self::Ok, Self::Error> {
+                let value_type = "some";
+
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, unit_struct) => {
-        fn serialize_unit_struct(self, _name: &'static str) -> Result<Self::Ok, Self::Error> {
-            $get_result("unit_struct")
+        unhygienic! {
+            fn serialize_unit_struct(self, _name: &'static str) -> Result<Self::Ok, Self::Error> {
+                let value_type = "unit_struct";
+
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, unit_variant) => {
-        fn serialize_unit_variant(self, _name: &'static str, _variant_index: u32, _variant: &'static str) -> Result<Self::Ok, Self::Error> {
-            $get_result("unit_variant")
+        unhygienic! {
+            fn serialize_unit_variant(self, _name: &'static str, _variant_index: u32, _variant: &'static str) -> Result<Self::Ok, Self::Error> {
+                let value_type = "unit_variant";
+                
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, newtype_struct) => {
-        fn serialize_newtype_struct<T: ?Sized + serde::ser::Serialize>(self, _name: &'static str, _value: &T) -> Result<Self::Ok, Self::Error> {
-            $get_result("newtype_struct")
+        unhygienic! {
+            fn serialize_newtype_struct<T: ?Sized + serde::ser::Serialize>(self, _name: &'static str, _value: &T) -> Result<Self::Ok, Self::Error> {
+                let value_type = "newtype_struct";
+                
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, newtype_variant) => {
-        fn serialize_newtype_variant<T: ?Sized + serde::ser::Serialize>(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _value: &T) -> Result<Self::Ok, Self::Error> {
-            $get_result("newtype_variant")
+        unhygienic! {
+            fn serialize_newtype_variant<T: ?Sized + serde::ser::Serialize>(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _value: &T) -> Result<Self::Ok, Self::Error> {
+                let value_type = "newtype_variant";
+                
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, seq) => {
-        fn serialize_seq(self, _len: Option<usize>) -> Result<Self::SerializeSeq, Self::Error> {
-            $get_result("seq")
+        unhygienic! {
+            fn serialize_seq(self, _len: Option<usize>) -> Result<Self::SerializeSeq, Self::Error> {
+                let value_type = "seq";
+                
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, tuple) => {
-        fn serialize_tuple(self, _len: usize) -> Result<Self::SerializeTuple, Self::Error> {
-            $get_result("tuple")
+        unhygienic! {
+            fn serialize_tuple(self, _len: usize) -> Result<Self::SerializeTuple, Self::Error> {
+                let value_type = "tuple";
+
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, tuple_struct) => {
-        fn serialize_tuple_struct(self, _name: &'static str, _len: usize) -> Result<Self::SerializeTupleStruct, Self::Error> {
-            $get_result("tuple_struct")
+        unhygienic! {
+            fn serialize_tuple_struct(self, _name: &'static str, _len: usize) -> Result<Self::SerializeTupleStruct, Self::Error> {
+                let value_type = "tuple_struct";
+
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, tuple_variant) => {
-        fn serialize_tuple_variant(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<Self::SerializeTupleVariant, Self::Error> {
-            $get_result("tuple_variant")
+        unhygienic! {
+            fn serialize_tuple_variant(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<Self::SerializeTupleVariant, Self::Error> {
+                let value_type = "tuple_variant";
+
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, map) => {
-        fn serialize_map(self, _len: Option<usize>) -> Result<Self::SerializeMap, Self::Error> {
-            $get_result("map")
+        unhygienic! {
+            fn serialize_map(self, _len: Option<usize>) -> Result<Self::SerializeMap, Self::Error> {
+                let value_type = "map";
+
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, struct) => {
-        fn serialize_struct(self, _name: &'static str, _len: usize) -> Result<Self::SerializeStruct, Self::Error> {
-            $get_result("struct")
+        unhygienic! {
+            fn serialize_struct(self, _name: &'static str, _len: usize) -> Result<Self::SerializeStruct, Self::Error> {
+                let value_type = "struct";
+
+                $get_result
+            }
         }
     };
 
     ($get_result:expr, struct_variant) => {
-        fn serialize_struct_variant(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<Self::SerializeStructVariant, Self::Error> {
-            $get_result("struct_variant")
+        unhygienic! {
+            fn serialize_struct_variant(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<Self::SerializeStructVariant, Self::Error> {
+                let value_type = "struct_variant";
+
+                $get_result
+            }
         }
     };
 }
@@ -259,6 +371,7 @@ macro_rules! impl_serialize {
 mod tests {
     use serde::ser;
     use thiserror::Error;
+    use unhygienic2::unhygienic;
 
     #[derive(Debug, Error)]
     enum SerializationError {
@@ -292,7 +405,7 @@ mod tests {
             type SerializeTupleStruct = ser::Impossible<Self::Ok, Self::Error>;
             type SerializeTupleVariant = ser::Impossible<Self::Ok, Self::Error>;
             
-            impl_serialize!(|value_type: &str| Err(SerializationError::CannotSerializeFrom(value_type.to_string())), [
+            impl_serialize!(Err(SerializationError::CannotSerializeFrom(value_type.to_string())), [
                 bool,
                 bytes,
                 i8, i16, i32, i64,

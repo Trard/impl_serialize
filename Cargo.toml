@@ -16,6 +16,7 @@ license = "MIT OR Apache-2.0"
 
 [dependencies]
 serde = "1.0"
+unhygienic2 = "0.1.0"
 
 [dev-dependencies]
 thiserror = "1.0"
