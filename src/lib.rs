@@ -376,6 +376,8 @@ mod tests {
 
     #[derive(Debug, Error)]
     enum SerializationError {
+        #[error("Cannot serialize value from char {0}")]
+        CannotSerializeFromChar(char),
         #[error("Cannot serialize value from {0}")]
         CannotSerializeFrom(String),
         #[error("Custom({0})")]
@@ -413,6 +415,41 @@ mod tests {
                 u8, u16, u32, u64,
                 f32, f64,
                 char,
+                str,
+                none, some, unit,
+                unit_struct, unit_variant,
+                newtype_struct, newtype_variant,
+                seq, map,
+                tuple, tuple_struct, tuple_variant,
+                struct, struct_variant
+            ]);
+        }
+    }
+
+    #[test]
+    fn special_for() {
+        struct MySerializer;
+
+        impl ser::Serializer for MySerializer {
+            type Error = SerializationError;
+            type Ok = ();
+
+            type SerializeMap = ser::Impossible<Self::Ok, Self::Error>;
+            type SerializeSeq = ser::Impossible<Self::Ok, Self::Error>;
+            type SerializeStruct = ser::Impossible<Self::Ok, Self::Error>;
+            type SerializeStructVariant = ser::Impossible<Self::Ok, Self::Error>;
+            type SerializeTuple = ser::Impossible<Self::Ok, Self::Error>;
+            type SerializeTupleStruct = ser::Impossible<Self::Ok, Self::Error>;
+            type SerializeTupleVariant = ser::Impossible<Self::Ok, Self::Error>;
+            
+            impl_serialize!(Err(SerializationError::CannotSerializeFromChar(v)), char);
+
+            impl_serialize!(Err(SerializationError::CannotSerializeFrom(value_type.to_string())), [
+                bool,
+                bytes,
+                i8, i16, i32, i64,
+                u8, u16, u32, u64,
+                f32, f64,
                 str,
                 none, some, unit,
                 unit_struct, unit_variant,
