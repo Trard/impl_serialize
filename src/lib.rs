@@ -78,6 +78,8 @@
 /// }
 /// ```
 
+pub use unhygienic2::unhygienic;
+
 #[macro_export]
 macro_rules! impl_serialize {
     ($get_result:expr, [$($type:ident),+]) => {
@@ -87,7 +89,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, bool) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_bool(self, _v: bool) -> Result<Self::Ok, Self::Error> {
                 let value_type = "bool";
 
@@ -97,7 +99,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, i8) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_i8(self, _v: i8) -> Result<Self::Ok, Self::Error> {
                 let value_type = "i8";
                 
@@ -107,7 +109,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, i16) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_i16(self, _v: i16) -> Result<Self::Ok, Self::Error> {
                 let value_type = "i16";
 
@@ -117,7 +119,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, i32) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_i32(self, _v: i32) -> Result<Self::Ok, Self::Error> {
                 let value_type = "i32";
 
@@ -127,7 +129,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, i64) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_i64(self, _v: i64) -> Result<Self::Ok, Self::Error> {
                 let value_type = "i64";
                 
@@ -137,7 +139,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, u8) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_u8(self, _v: u8) -> Result<Self::Ok, Self::Error> {
                 let value_type = "u8";
 
@@ -147,7 +149,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, u16) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_u16(self, _v: u16) -> Result<Self::Ok, Self::Error> {
                 let value_type = "u16";
 
@@ -157,7 +159,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, u32) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_u32(self, _v: u32) -> Result<Self::Ok, Self::Error> {
                 let value_type = "u32";
 
@@ -167,7 +169,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, u64) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_u64(self, _v: u64) -> Result<Self::Ok, Self::Error> {
                 let value_type = "u32";
 
@@ -177,7 +179,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, f32) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_f32(self, _v: f32) -> Result<Self::Ok, Self::Error> {
                 let value_type = "f32";
 
@@ -187,7 +189,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, f64) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_f64(self, _v: f64) -> Result<Self::Ok, Self::Error> {
                 let value_type = "f64";
 
@@ -197,7 +199,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, char) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_char(self, _v: char) -> Result<Self::Ok, Self::Error> {
                 let value_type = "char";
 
@@ -207,7 +209,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, str) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_str(self, _v: &str) -> Result<Self::Ok, Self::Error> {
                 let value_type = "str";
 
@@ -217,7 +219,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, bytes) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_bytes(self, _v: &[u8]) -> Result<Self::Ok, Self::Error> {
                 let value_type = "bytes";
                 
@@ -227,7 +229,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, none) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_none(self) -> Result<Self::Ok, Self::Error> {
                 let value_type = "none";
 
@@ -237,7 +239,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, unit) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_unit(self) -> Result<Self::Ok, Self::Error> {
                 let value_type = "unit";
 
@@ -247,7 +249,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, some) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_some<T: ?Sized + serde::ser::Serialize>(self, _value: &T) -> Result<Self::Ok, Self::Error> {
                 let value_type = "some";
 
@@ -257,7 +259,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, unit_struct) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_unit_struct(self, _name: &'static str) -> Result<Self::Ok, Self::Error> {
                 let value_type = "unit_struct";
 
@@ -267,7 +269,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, unit_variant) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_unit_variant(self, _name: &'static str, _variant_index: u32, _variant: &'static str) -> Result<Self::Ok, Self::Error> {
                 let value_type = "unit_variant";
                 
@@ -277,7 +279,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, newtype_struct) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_newtype_struct<T: ?Sized + serde::ser::Serialize>(self, _name: &'static str, _value: &T) -> Result<Self::Ok, Self::Error> {
                 let value_type = "newtype_struct";
                 
@@ -287,7 +289,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, newtype_variant) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_newtype_variant<T: ?Sized + serde::ser::Serialize>(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _value: &T) -> Result<Self::Ok, Self::Error> {
                 let value_type = "newtype_variant";
                 
@@ -297,7 +299,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, seq) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_seq(self, _len: Option<usize>) -> Result<Self::SerializeSeq, Self::Error> {
                 let value_type = "seq";
                 
@@ -307,7 +309,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, tuple) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_tuple(self, _len: usize) -> Result<Self::SerializeTuple, Self::Error> {
                 let value_type = "tuple";
 
@@ -317,7 +319,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, tuple_struct) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_tuple_struct(self, _name: &'static str, _len: usize) -> Result<Self::SerializeTupleStruct, Self::Error> {
                 let value_type = "tuple_struct";
 
@@ -327,7 +329,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, tuple_variant) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_tuple_variant(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<Self::SerializeTupleVariant, Self::Error> {
                 let value_type = "tuple_variant";
 
@@ -337,7 +339,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, map) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_map(self, _len: Option<usize>) -> Result<Self::SerializeMap, Self::Error> {
                 let value_type = "map";
 
@@ -347,7 +349,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, struct) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_struct(self, _name: &'static str, _len: usize) -> Result<Self::SerializeStruct, Self::Error> {
                 let value_type = "struct";
 
@@ -357,7 +359,7 @@ macro_rules! impl_serialize {
     };
 
     ($get_result:expr, struct_variant) => {
-        unhygienic! {
+        impl_serialize::unhygienic! {
             fn serialize_struct_variant(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<Self::SerializeStructVariant, Self::Error> {
                 let value_type = "struct_variant";
 
@@ -371,7 +373,7 @@ macro_rules! impl_serialize {
 mod tests {
     use serde::ser;
     use thiserror::Error;
-    use unhygienic2::unhygienic;
+    use crate as impl_serialize;
 
     #[derive(Debug, Error)]
     enum SerializationError {
