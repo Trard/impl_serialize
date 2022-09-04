@@ -391,7 +391,7 @@ mod tests {
     }
 
     #[test]
-    fn all_get_results() {
+    fn all() {
         struct MySerializer;
 
         impl ser::Serializer for MySerializer {
