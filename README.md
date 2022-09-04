@@ -45,13 +45,16 @@ impl ser::Serializer for MySerializer {
     type SerializeTupleStruct = ser::Impossible<Self::Ok, Self::Error>;
     type SerializeTupleVariant = ser::Impossible<Self::Ok, Self::Error>;
 
-    //with value type
+    //value_type is metavariable (&str) what represents any serializing value type.
+    //for example, value_type will be "i8" when seializing i8 or "bytes" when &[u8] (bytes);
+
+    //with value_type
     impl_serialize!(
         Err(SerializationError::CannotSerializeFrom(value_type.to_string())),
         bool
     );
     
-    //without value type
+    //without value_type
     impl_serialize!(
         Err(SerializationError::OtherError),
         char
