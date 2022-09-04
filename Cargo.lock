@@ -4,10 +4,11 @@ version = 3
 
 [[package]]
 name = "impl_serialize"
-version = "2.0.0"
+version = "3.0.0"
 dependencies = [
  "serde",
  "thiserror",
+ "unhygienic2",
 ]
 
 [[package]]
@@ -64,6 +65,12 @@ dependencies = [
  "quote",
  "syn",
 ]
+
+[[package]]
+name = "unhygienic2"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "02a30ee73576cf3db4ccbc211b533ae0285dafdaa48d5fcf4d63123c66a61cd5"
 
 [[package]]
 name = "unicode-ident"

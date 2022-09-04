@@ -4,7 +4,7 @@ This library provides a simple procedural macro for fast implementing serialize 
 
 ```toml
 [dependencies]
-impl_serialize = "2.0"
+impl_serialize = "3.0"
 ```
 
 # Example
@@ -45,25 +45,24 @@ impl ser::Serializer for MySerializer {
     type SerializeTupleStruct = ser::Impossible<Self::Ok, Self::Error>;
     type SerializeTupleVariant = ser::Impossible<Self::Ok, Self::Error>;
 
-    //with value type
+    //value_type is metavariable (&str) what represents any serializing value type.
+    //for example, value_type will be "i8" when seializing i8 or "bytes" when &[u8] (bytes);
+
+    //with value_type
     impl_serialize!(
-        |value_type: &str| {
-            Err(SerializationError::CannotSerializeFrom(value_type.to_string()))
-        },
+        Err(SerializationError::CannotSerializeFrom(value_type.to_string())),
         bool
     );
     
-    //without value type
+    //without value_type
     impl_serialize!(
-        |_| Err(SerializationError::OtherError),
+        Err(SerializationError::OtherError),
         char
     );
 
     //for many types
     impl_serialize!(
-        |value_type: &str| {
-            Err(SerializationError::CannotSerializeFrom(value_type.to_string()))
-        },
+        Err(SerializationError::CannotSerializeFrom(value_type.to_string())),
         [
             bytes,
             i8, i16, i32, i64,
