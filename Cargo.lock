@@ -4,7 +4,7 @@ version = 3
 
 [[package]]
 name = "impl_serialize"
-version = "2.0.1"
+version = "3.0.0"
 dependencies = [
  "serde",
  "thiserror",

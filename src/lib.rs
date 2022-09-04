@@ -1,5 +1,8 @@
 //! This library provides a simple procedural macro for fast implementing serialize methods in
 //! [serde::Serializer](https://docs.rs/serde/latest/serde/trait.Serializer.html) trait.
+
+pub use unhygienic2::unhygienic;
+
 /// Implements serialize methods for [serde::Serializer](https://docs.rs/serde/latest/serde/trait.Serializer.html)
 /// 
 /// # Examples
@@ -43,23 +46,19 @@
 /// #
 ///     //with value type
 ///     impl_serialize!(
-///         |value_type: &str| {
-///             Err(SerializationError::CannotSerializeFrom(value_type.to_string()))
-///         },
+///         Err(SerializationError::CannotSerializeFrom(value_type.to_string())),
 ///         bool
 ///     );
 ///     
 ///     //without value type
 ///     impl_serialize!(
-///         |_| Err(SerializationError::OtherError),
+///         Err(SerializationError::OtherError),
 ///         char
 ///     );
 /// 
 ///     //for many types
 ///     impl_serialize!(
-///         |value_type: &str| {
-///             Err(SerializationError::CannotSerializeFrom(value_type.to_string()))
-///         },
+///         Err(SerializationError::CannotSerializeFrom(value_type.to_string())),
 ///         [
 ///             bytes,
 ///             i8, i16, i32, i64,
@@ -77,9 +76,6 @@
 ///     );
 /// }
 /// ```
-
-pub use unhygienic2::unhygienic;
-
 #[macro_export]
 macro_rules! impl_serialize {
     ($get_result:expr, [$($type:ident),+]) => {
