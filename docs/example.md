@@ -1,4 +1,4 @@
-```
+```rust
 use impl_serialize::impl_serialize;
 use serde::ser;
 use thiserror::Error;
