@@ -1,14 +1,4 @@
-# impl_serialize!
-
-This library provides a simple procedural macro for fast implementing serialize methods in [`serde::Serializer`] trait.
-
-```toml
-[dependencies]
-impl_serialize = "3.1"
 ```
-
-# Example
-```rust
 use impl_serialize::impl_serialize;
 use serde::ser;
 use thiserror::Error;
@@ -79,5 +69,3 @@ impl ser::Serializer for MySerializer {
     );
 }
 ```
-
-[`serde::Serializer`]: https://docs.rs/serde/latest/serde/trait.Serializer.html
