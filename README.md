@@ -8,6 +8,9 @@ impl_serialize = "3.1"
 ```
 
 # Example
+
+Read about using [metavariables](docs/metavariables.md) inside impl_serialize!
+
 ```rust
 use impl_serialize::impl_serialize;
 use serde::ser;
@@ -59,7 +62,7 @@ impl ser::Serializer for MySerializer {
         Err(SerializationError::OtherError),
         char
     );
-
+    
     //for many types
     impl_serialize!(
         Err(SerializationError::CannotSerializeFrom(value_type.to_string())),

@@ -2,6 +2,7 @@
 //! [serde::Serializer](https://docs.rs/serde/latest/serde/trait.Serializer.html) trait.
 //! # Example
 #![doc = include_str!("../docs/example.md")]
+#![doc = include_str!("../docs/metavariables.md")]
 
 pub use unhygienic2::unhygienic;
 
@@ -300,3 +301,7 @@ macro_rules! impl_serialize {
 
 #[cfg(test)]
 mod tests;
+
+#[doc = include_str!("../README.md")]
+#[cfg(doctest)]
+struct ReadmeDoctests;
