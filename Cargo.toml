@@ -4,7 +4,7 @@ description = "Macro for common implementing methods in serde::Serializer trait"
 categories = ["accessibility"]
 keywords = ["serde", "macro", "serialize", "error"]
 
-version = "3.1.1"
+version = "3.1.2"
 edition = "2021"
 
 repository = "https://github.com/Trard/impl_serialize"
