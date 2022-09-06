@@ -161,6 +161,6 @@ assert_eq!(
 );
 ```
 
-[More_examples](../src/tests/metavariables.rs)
+[More examples...](../src/tests/metavariables.rs)
 
 [`serde::serializer`]: https://docs.rs/serde/latest/serde/trait.Serializer.html
