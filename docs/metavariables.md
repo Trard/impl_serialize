@@ -6,6 +6,32 @@ For details of specific input args see [`serde::Serializer`].
 
 # Example
 ```rust
+use thiserror::Error;
+use serde::ser;
+use ser::Serializer;
+use impl_serialize::impl_serialize;
+
+#[derive(Debug, Error, PartialEq)]
+enum SerializationError {
+    #[error("Expected value higher {than}. Found {current_value}")]
+    ExpectedValueHigher {
+        than: i64,
+        current_value: i64
+    },
+    #[error("Cannot serialize")]
+    CannotSerialize,
+    #[error("Custom({0})")]
+    Custom(String),
+}
+
+impl serde::ser::Error for SerializationError {
+    fn custom<T>(msg: T) -> Self
+    where
+        T: std::fmt::Display,
+    {
+        SerializationError::Custom(msg.to_string())
+    }
+}
 #[derive(Clone, Copy)]
 struct MoreThanOneSerializer;
 
@@ -105,6 +131,28 @@ Every generated function have variable `value_type: &str` inside it. You can use
 
 # Example
 ```rust
+use thiserror::Error;
+use serde::ser;
+use ser::Serializer;
+use impl_serialize::impl_serialize;
+
+#[derive(Debug, Error, PartialEq)]
+enum SerializationError {
+    #[error("Cannot serialize from({0})")]
+    CannotSerializeFrom(String),
+    #[error("Custom({0})")]
+    Custom(String),
+}
+
+impl serde::ser::Error for SerializationError {
+    fn custom<T>(msg: T) -> Self
+    where
+        T: std::fmt::Display,
+    {
+        SerializationError::Custom(msg.to_string())
+    }
+}
+
 #[derive(Clone, Copy)]
 struct CharSerializer;
 
@@ -122,13 +170,13 @@ impl ser::Serializer for CharSerializer {
 
     impl_serialize!(Ok(v), char);
 
-    impl_serialize!(Err(SerializationError::CannotSerializeFrom(value_type)), [
+    impl_serialize!(Err(SerializationError::CannotSerializeFrom(value_type.to_string())), [
         i8, i16, i32, i64,
         u8, u16, u32, u64,
-        f32, f64
+        f32, f64,
         bool,
         bytes,
-        char, str,
+        str,
         none, some, unit,
         unit_struct, unit_variant,
         newtype_struct, newtype_variant,
@@ -146,17 +194,17 @@ assert_eq!(
 );
 
 assert_eq!(
-    more_than_one_serializer.serialize_char('h').ok().unwrap(),
+    char_serializer.serialize_char('h').ok().unwrap(),
     'h'
 );
 
 assert_eq!(
-    more_than_one_serializer.serialize_i8(0).err().unwrap(),
+    char_serializer.serialize_i8(0).err().unwrap(),
     SerializationError::CannotSerializeFrom("i8".to_string())
 );
 
 assert_eq!(
-    more_than_one_serializer.serialize_none().err().unwrap(),
+    char_serializer.serialize_none().err().unwrap(),
     SerializationError::CannotSerializeFrom("none".to_string())
 );
 ```
